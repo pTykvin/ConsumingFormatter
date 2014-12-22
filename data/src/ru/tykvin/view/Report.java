@@ -23,6 +23,7 @@ import ru.tykvin.loader.Config;
 import ru.tykvin.loader.Constants;
 import ru.tykvin.model.data.DataBean;
 import ru.tykvin.model.data.Source;
+import ru.tykvin.util.MathUtil;
 
 public class Report {
 
@@ -65,15 +66,14 @@ public class Report {
         parameters.put("MAKER", config.getMaker());
         for (int i = 0; i < 4; i++) {
             parameters.put("COUNTER" + (i + 1), source.size() <= i ? "" : source.get(i).getNumber());
-            parameters.put("SUM" + (i + 1), source.size() <= i ? null : source.get(i).getSum() / 10000 * config.getCorrection());
-            parameters.put("SUMC" + (i + 1), source.size() <= i ? null : source.get(i).getSum() / 10000 * config.getCoefficient() * config.getCorrection());
+            parameters.put("SUM" + (i + 1), source.size() <= i ? null : MathUtil.toDouble(source.get(i).getSum()));
+            parameters.put("SUMC" + (i + 1), source.size() <= i ? null : MathUtil.toDouble(source.get(i).getSum() * config.getCoefficient()));
         }
     }
 
     private void fillDataSet(Config config, List<Source> sourceList) throws ParseException {
         SimpleDateFormat dstFormat = new SimpleDateFormat(Constants.timesFormat);
         Integer k = config.getCoefficient();
-        Double correct = config.getCorrection();
         DataBean bean;
         Calendar c = Calendar.getInstance();
         Calendar c1 = Calendar.getInstance();
@@ -86,8 +86,8 @@ public class Report {
                 bean.setTime("0-00");
                 for (int j = 0; j < sourceList.size(); j++) {
                     source = sourceList.get(j);
-                    bean.getVal()[j] = source.getBeginConsuming();
-                    bean.getValC()[j] = source.getBeginConsuming() * k;
+                    bean.getVal()[j] = MathUtil.toDouble(source.getBeginConsuming());
+                    bean.getValC()[j] = MathUtil.toDouble(source.getBeginConsuming() * k);
                 }
                 dataList.add(bean);
             } else {
@@ -99,15 +99,10 @@ public class Report {
                     if ("24-00".equals(time)) {
                         c.add(Calendar.DAY_OF_MONTH, 1);
                     }
-                    Double val = source.getConsumings().get(c.getTime());
-                    System.out.println(c.getTime() + " >> " + (val == null ? 0 : val));
-                    bean.getVal()[j] = val / 10000 * correct + source.getBeginConsuming();
-                    val += (source.getBeginConsuming() * 10000);
-                    val *= 40;
-                    val *= correct;
-                    val /= 10000;
-                    bean.getValC()[j] = (val + source.getBeginConsuming() * 10000) * 40 / 10000;
                     bean.setTime(dstFormat.format(c1.getTime()));
+                    long val = (long) source.get(c.getTime());
+                    bean.getVal()[j] = MathUtil.toDouble(source.getBeginConsuming() + val);
+                    bean.getValC()[j] = MathUtil.toDouble((source.getBeginConsuming() + val) * k);
                 }
             }
             dataList.add(bean);

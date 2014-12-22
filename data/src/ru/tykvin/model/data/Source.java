@@ -21,16 +21,18 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import ru.tykvin.util.MathUtil;
+
 public class Source {
 
     private Date date;
     private String number;
     private SimpleDateFormat headFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss"); //18.12.2014 17:07:45
     private SimpleDateFormat consumingFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm"); //18.12.2014 17:07:45
-    private Map<Date, Double> map = new HashMap<Date, Double>();
+    private Map<Date, Long> map = new HashMap<Date, Long>();
     private NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
-	private double sum;
-    private Double beginConsuming = 0d;
+	private long sum;
+    private long beginConsuming = 0;
 
     public Source(File elementAt) throws Exception {
         if (!elementAt.exists()) {
@@ -140,8 +142,7 @@ public class Source {
             try {
             	Node firstNode = getFirstNode(node);
 				Date date = consumingFormat.parse(getValue(firstNode));				
-			    Number number = format.parse(getValue(getNextNode(node)));			    
-                double value = Math.floor(number.doubleValue() * 10000);
+				long value = MathUtil.toLong(getValue(getNextNode(node)));			    
 			    sum += value;
                 map.put(date, sum);
                 System.out.println(date + " : " + sum);
@@ -173,28 +174,24 @@ public class Source {
         return number;
     }
 
-    public Map<Date, Double> getConsumings() {
-        return map;
-    }
-
     public Date getDate() {
         return date;
     }
 
-	public double getSum() {
+	public long getSum() {
 		return sum;
 	}
 
     public void setBeginConsuming(Double consuming) {
-        this.beginConsuming = consuming;
+        this.beginConsuming = MathUtil.toLong(String.valueOf(consuming));
     }
 
-	public Double getBeginConsuming() {
+	public Long getBeginConsuming() {
         return beginConsuming;
 	}
 
-    public Double get(Date time) {
-        return getConsumings().get(time) / 10000;
+    public long get(Date time) {
+        return map.get(time);
     }
 
 }

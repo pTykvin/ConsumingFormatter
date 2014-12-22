@@ -10,6 +10,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import ru.tykvin.util.MathUtil;
+
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 public class Config {
@@ -36,14 +38,21 @@ public class Config {
     @XmlElement
     private String maker;
 
-    @XmlElement
-    private Double correction;
-
 	@XmlElement
 	public void setTimesFormat(String timesFormat) {
 		Constants.timesFormat = timesFormat;
 	}
 
+    /**
+     * Коэффициент для коррекции показаний
+     * 
+     * @return
+     */
+	@XmlElement
+    public void setCorrection(String correction) {
+		MathUtil.setCorrection(correction);
+    }
+	
 	/**
 	 * Коэффициент трасформации
 	 * 
@@ -127,19 +136,6 @@ public class Config {
 
     public void setMaker(String maker) {
         this.maker = maker;
-    }
-
-    /**
-     * Коэффициент для коррекции показаний
-     * 
-     * @return
-     */
-    public Double getCorrection() {
-        return correction;
-    }
-
-    public void setCorrection(Double correction) {
-        this.correction = correction;
     }
 
 }
