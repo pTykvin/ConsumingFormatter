@@ -1,4 +1,5 @@
 package ru.tykvin.view;
+
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,80 +25,89 @@ import ru.tykvin.model.data.DataBean;
 import ru.tykvin.model.data.Source;
 
 public class Report {
-	
-	Map<String, Object> parameters = new HashMap<String, Object>();
-	private ArrayList<DataBean> dataList = new ArrayList<DataBean>();
-	
-    public static void main(String[] args) throws JRException {        
-    	(new Report()).show();
+
+    Map<String, Object> parameters = new HashMap<String, Object>();
+    private ArrayList<DataBean> dataList = new ArrayList<DataBean>();
+
+    public static void main(String[] args) throws JRException {
+        (new Report()).show();
     }
 
-	public void show() throws JRException {       
+    public void show() throws JRException {
         JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(dataList);
         parameters.put("INFO", "Hello");
 
         JasperReport report = (JasperReport) JRLoader.loadObject(new File("templates/template.jasper"));
-        JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, beanColDataSource);        
+        JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, beanColDataSource);
 
         JFrame frame = new JFrame("Report");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JRViewer view = new JRViewer(jasperPrint);
         view.setFitWidthZoomRatio();
         frame.getContentPane().add(view);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
-	}	
+    }
 
-	public void show(Config config, List<Source> source) throws JRException, ParseException {
-		fillParameters(config, source);
-		fillDataSet(config, source);
-		show();
-	}
+    public void show(Config config, List<Source> source) throws JRException, ParseException {
+        fillParameters(config, source);
+        fillDataSet(config, source);
+        show();
+    }
 
-	private void fillParameters(Config config, List<Source> source) {
-		SimpleDateFormat format = new SimpleDateFormat("dd, MMMM yyyy");
-		parameters.put("COMPANY", config.getCompany());
-		parameters.put("CODE", config.getCode());
-		parameters.put("COEFFICIENT", config.getCoefficient());
-		parameters.put("CONTRACT", config.getContract());
-		parameters.put("TYPE", config.getType());		
-		parameters.put("DATE", format.format(source.get(0).getDate()));
-		
-		for (int i = 0; i < source.size(); i++) {
-			parameters.put("COUNTER"+(i+1),source.get(i).getNumber());
-		}
-		
-	}
+    private void fillParameters(Config config, List<Source> source) {
+        SimpleDateFormat format = new SimpleDateFormat("dd, MMMM yyyy");
+        parameters.put("COMPANY", config.getCompany());
+        parameters.put("CODE", config.getCode());
+        parameters.put("COEFFICIENT", config.getCoefficient());
+        parameters.put("CONTRACT", config.getContract());
+        parameters.put("TYPE", config.getType());
+        parameters.put("DATE", format.format(source.get(0).getDate()));
+        parameters.put("MAKER", config.getMaker());
+        for (int i = 0; i < 4; i++) {
+            parameters.put("COUNTER" + (i + 1), source.size() <= i ? "" : source.get(i).getNumber());
+            parameters.put("SUM" + (i + 1), source.size() <= i ? null : source.get(i).getSum() / 10000 * config.getCorrection());
+            parameters.put("SUMC" + (i + 1), source.size() <= i ? null : source.get(i).getSum() / 10000 * config.getCoefficient() * config.getCorrection());
+        }
+    }
 
-	private void fillDataSet(Config config, List<Source> sourceList) throws ParseException {
-		SimpleDateFormat dstFormat = new SimpleDateFormat(Constants.timesFormat);
-		int i = 0;
-		DataBean bean;
-		Source source = sourceList.get(0);
-		Calendar c = Calendar.getInstance();
-		Calendar c1 = Calendar.getInstance();
-		for (Date t : config.getTimes()) {
-			String time = dstFormat.format(t);
-			bean = new DataBean();
-			if (i++ == 0 && "24-00".equals(time)) {
-				bean.setTime("0-00");
-				bean.getVal()[0] = source.getBeginConsuming();
-				dataList.add(bean);	
-			} else {				
-				c.setTime(source.getDate());
-				c1.setTime(t);
-				c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH) - 1, c1.get(Calendar.HOUR_OF_DAY), c1.get(Calendar.MINUTE), 0);
-				if ("24-00".equals(time)) {
-					c.add(Calendar.DAY_OF_MONTH, 1);
-				}
-				Double val = source.getConsumings().get(c.getTime());
-				System.out.println(c.getTime() + " >> " + (val == null ? 0 : val));
-				bean.getVal()[0] = val / 10000;		
-				bean.setTime(dstFormat.format(c1.getTime()));
-			}
-			dataList.add(bean);			
-		}
-	}
-	
+    private void fillDataSet(Config config, List<Source> sourceList) throws ParseException {
+        SimpleDateFormat dstFormat = new SimpleDateFormat(Constants.timesFormat);
+        Integer k = config.getCoefficient();
+        Double correct = config.getCorrection();
+        DataBean bean;
+        Calendar c = Calendar.getInstance();
+        Calendar c1 = Calendar.getInstance();
+        Source source;
+        int i = 0;
+        for (Date t : config.getTimes()) {
+            String time = dstFormat.format(t);
+            bean = new DataBean();
+            if (i++ == 0 && "24-00".equals(time)) {
+                bean.setTime("0-00");
+                for (int j = 0; j < sourceList.size(); j++) {
+                    source = sourceList.get(j);
+                    bean.getVal()[j] = source.getBeginConsuming();
+                    bean.getValC()[j] = source.getBeginConsuming() * k;
+                }
+                dataList.add(bean);
+            } else {
+                for (int j = 0; j < sourceList.size(); j++) {
+                    source = sourceList.get(j);
+                    c.setTime(source.getDate());
+                    c1.setTime(t);
+                    c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH) - 1, c1.get(Calendar.HOUR_OF_DAY), c1.get(Calendar.MINUTE), 0);
+                    if ("24-00".equals(time)) {
+                        c.add(Calendar.DAY_OF_MONTH, 1);
+                    }
+                    Double val = source.getConsumings().get(c.getTime()) * correct;
+                    System.out.println(c.getTime() + " >> " + (val == null ? 0 : val));
+                    bean.getVal()[j] = val / 10000 + source.getBeginConsuming();
+                    bean.getValC()[j] = (val * k + source.getBeginConsuming() * k * 10000) / 10000;
+                    bean.setTime(dstFormat.format(c1.getTime()));
+                }
+            }
+            dataList.add(bean);
+        }
+    }
+
 }
-

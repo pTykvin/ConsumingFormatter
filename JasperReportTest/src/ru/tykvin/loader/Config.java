@@ -33,6 +33,12 @@ public class Config {
 	@XmlElement
 	private String type;
 
+    @XmlElement
+    private String maker;
+
+    @XmlElement
+    private Double correction;
+
 	@XmlElement
 	public void setTimesFormat(String timesFormat) {
 		Constants.timesFormat = timesFormat;
@@ -109,5 +115,31 @@ public class Config {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+    /**
+     * Исполнитель
+     * 
+     * @return
+     */
+    public String getMaker() {
+        return maker;
+    }
+
+    public void setMaker(String maker) {
+        this.maker = maker;
+    }
+
+    /**
+     * Коэффициент для коррекции показаний
+     * 
+     * @return
+     */
+    public Double getCorrection() {
+        return correction;
+    }
+
+    public void setCorrection(Double correction) {
+        this.correction = correction;
+    }
 
 }

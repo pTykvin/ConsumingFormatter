@@ -140,7 +140,7 @@ public class Source {
             	Node firstNode = getFirstNode(node);
 				Date date = consumingFormat.parse(getValue(firstNode));				
 			    Number number = format.parse(getValue(getNextNode(node)));			    
-			    double value = number.doubleValue() * 10000;
+                double value = Math.floor(number.doubleValue() * 10000);
 			    sum += value;
                 map.put(date, sum);
                 System.out.println(date + " : " + sum);
@@ -185,7 +185,11 @@ public class Source {
 	}
 
 	public Double getBeginConsuming() {
-		return 0d;
+        return 5000d;
 	}
+
+    public Double get(Date time) {
+        return getConsumings().get(time) / 10000;
+    }
 
 }

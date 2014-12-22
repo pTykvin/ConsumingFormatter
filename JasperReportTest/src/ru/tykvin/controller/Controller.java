@@ -26,6 +26,7 @@ public class Controller {
                 File file = view.requestFile();
                 if (file != null) {
                     model.fireAddFile(file);
+                    view.fireAddFile();
                 }
             }
         };
