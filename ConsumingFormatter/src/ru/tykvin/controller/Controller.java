@@ -3,7 +3,7 @@ package ru.tykvin.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.event.ListSelectionEvent;
@@ -11,10 +11,13 @@ import javax.swing.event.ListSelectionListener;
 
 import ru.tykvin.model.Model;
 import ru.tykvin.model.data.MainSourcer;
+import ru.tykvin.model.data.Source;
 import ru.tykvin.view.View;
 
-public class Controller {
+public enum Controller {
 
+	I;
+	
     private View view;
     private Model model;
     private MainSourcer sourcer;
@@ -45,10 +48,11 @@ public class Controller {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Map<String, Map<Date, Double>> data;
+            	List<Source> data;
                 try {
                     data = sourcer.load(model.getListModel());
                     model.fireParseResult(data);
+                    view.showReport();
                 } catch (Exception e1) {
                     view.fireError(e1);
                 }
@@ -79,5 +83,12 @@ public class Controller {
             }
         };
     }
+
+	public Model getModel() {
+		if (model == null) {
+			model = new Model();
+		}
+		return model;
+	}
 
 }

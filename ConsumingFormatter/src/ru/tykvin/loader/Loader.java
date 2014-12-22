@@ -19,7 +19,7 @@ public class Loader {
         }
 
         View view = new View();
-        Controller controller = new Controller();
+        Controller controller = Controller.I;
         Model model = new Model();
         PropertyLoader propertyLoader = new PropertyLoader();
         model.setConfig(propertyLoader.unmarshall());

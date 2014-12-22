@@ -29,6 +29,6 @@ public class PropertyLoader {
     }
 
     public Config unmarshall() throws JAXBException {
-        return (Config) um.unmarshal(new File("properties.xml"));
+        return (Config) um.unmarshal(new File("../properties.xml"));
     }
 }

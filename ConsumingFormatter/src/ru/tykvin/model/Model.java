@@ -1,19 +1,22 @@
 package ru.tykvin.model;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.DefaultListModel;
 
 import ru.tykvin.loader.Config;
+import ru.tykvin.model.data.Source;
 
 public class Model {
 
     DefaultListModel<File> fileList = new DefaultListModel<File>();
     private Config config;
     private int selectIndex;
-    private Map<String, Map<Date, Double>> source;
+    private List<Source> source;
 
     public void fireAddFile(File file) {
         if (!fileList.contains(file)) {
@@ -43,12 +46,17 @@ public class Model {
         this.selectIndex = index;
     }
 
-    public void fireParseResult(Map<String, Map<Date, Double>> data) {
+    public void fireParseResult(List<Source> data) {
         this.source = data;
     }
 
-    public Map<String, Map<Date, Double>> getSource() {
+    public List<Source> getSource() {
         return source;
+    }
+    
+    public Integer getCount() {
+    	return 3;
     }
 
 }
+
