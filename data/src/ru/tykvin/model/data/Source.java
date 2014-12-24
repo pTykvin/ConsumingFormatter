@@ -83,16 +83,17 @@ public class Source {
         { // Перебираем все строки
             Node row = null;
             sum = BigDecimal.valueOf(0);
-            //            Calendar c = Calendar.getInstance();
-            //            c.clear();
-            //            System.out.println(c.getTime() + " : " + sum.doubleValue());
-            //            map.put(c.getTime(), sum);
             for (i = 0; i < rows.getLength(); row = getNode(rows.item(i)), i++) {
             	if (row != null && row.getNodeType() != Node.TEXT_NODE) {
 	                parseNumber(row.getChildNodes());
 	                parseConsuming(row.getChildNodes());
             	}
             }
+			Calendar c = Calendar.getInstance();
+			c.clear();
+			c.add(Calendar.DAY_OF_MONTH, 1);
+			System.out.println(c.getTime() + " : " + sum.doubleValue());
+			map.put(c.getTime(), sum);
         }
 
     }

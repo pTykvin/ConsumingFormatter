@@ -90,17 +90,7 @@ public class Report {
                 BigDecimal beginConsumingPower = source.get(beginConsumingTime).multiply(correct);
                 BigDecimal beginConsuming = source.getBeginConsuming();
                 BigDecimal currentPower = source.get(c.getTime()).multiply(correct);
-                BigDecimal consuming;
-                int compare = beginConsumingCalendar.compareTo(c);
-                if (compare > 0) {
-
-                    BigDecimal d = beginConsumingPower.subtract(currentPower);
-                    consuming = beginConsuming.subtract(d);
-                } else if (compare < 0) {
-                    consuming = beginConsuming.add(currentPower);
-                } else {
-                    consuming = beginConsuming;
-                }
+                BigDecimal consuming = beginConsuming.subtract(beginConsumingPower).add(currentPower);
                 System.out.println(consuming.doubleValue());
                 bean.getVal()[j] = consuming.doubleValue();
                 bean.getValC()[j] = consuming.multiply(k).doubleValue();
