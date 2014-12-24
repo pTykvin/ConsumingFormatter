@@ -29,6 +29,8 @@ public class PropertyLoader {
     }
 
     public Config unmarshall() throws JAXBException {
+    	File f = new File("../properties.xml");
+    	System.out.println(f.getAbsolutePath());
         return (Config) um.unmarshal(new File("../properties.xml"));
     }
 }

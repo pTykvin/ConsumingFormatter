@@ -3,13 +3,11 @@ package ru.tykvin.model.data;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -30,7 +28,6 @@ public class Source {
     private SimpleDateFormat headFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss"); //18.12.2014 17:07:45
     private SimpleDateFormat consumingFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm"); //18.12.2014 17:07:45
     private Map<Date, BigDecimal> map = new HashMap<Date, BigDecimal>();
-    private NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
     private BigDecimal sum = BigDecimal.valueOf(0);
     private BigDecimal beginConsuming = BigDecimal.valueOf(0);
 

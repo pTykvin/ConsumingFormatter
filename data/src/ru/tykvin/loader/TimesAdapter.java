@@ -14,6 +14,10 @@ public class TimesAdapter extends XmlAdapter<String, ArrayList<Date>> {
         String[] arr = value.split(",");
         ArrayList<Date> result = new ArrayList<Date>();
         for (String s : arr) {
+        	if (s.contains("^")) {
+        		s = s.replaceAll("^", "");
+        		Constants.beginConsumingTime = format.parse(s);
+        	}
             result.add(format.parse(s));
         }
         return result;

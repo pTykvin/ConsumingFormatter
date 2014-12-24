@@ -27,7 +27,7 @@ import ru.tykvin.model.data.Source;
 
 public class Report {
 
-    Map<String, Object> parameters = new HashMap<String, Object>();
+    private Map<String, Object> parameters = new HashMap<String, Object>();
     private ArrayList<DataBean> dataList = new ArrayList<DataBean>();
 
     public void show() throws JRException {
@@ -70,31 +70,32 @@ public class Report {
     private void fillDataSet(Config config, List<Source> sourceList) throws ParseException {
         SimpleDateFormat dstFormat = new SimpleDateFormat(Constants.timesFormat);
         Calendar beginConsumingCalendar = Calendar.getInstance();
-        Date beginConsumingTime = new SimpleDateFormat("H-mm").parse("9-00");
-        beginConsumingCalendar.setTime(beginConsumingTime);
+        beginConsumingCalendar.setTime(Constants.beginConsumingTime);
         BigDecimal k = config.getCoefficient();
         BigDecimal correct = config.getCorrection();
-        DataBean bean;
+        DataBean bean = new DataBean();
+        dataList.add(bean);
         Calendar c = Calendar.getInstance();
         Source source;
         int i = 0;
         for (Date t : config.getTimes()) {
             String time = dstFormat.format(t);
             c.setTime(t);
-            if (config.getTimes().size() == ++i && "24-00".equals(time)) {
-                c.add(Calendar.DAY_OF_MONTH, 1);
+            if (config.getTimes().size() == ++i && "0-00".equals(time)) {
+            	time = "24-00";
+                //c.add(Calendar.DAY_OF_MONTH, 1);                
             }
             bean = new DataBean();
             for (int j = 0; j < sourceList.size(); j++) {
                 source = sourceList.get(j);
-                BigDecimal beginConsumingPower = source.get(beginConsumingTime).multiply(correct);
+                BigDecimal beginConsumingPower = source.get(Constants.beginConsumingTime).multiply(correct);
                 BigDecimal beginConsuming = source.getBeginConsuming();
                 BigDecimal currentPower = source.get(c.getTime()).multiply(correct);
                 BigDecimal consuming = beginConsuming.subtract(beginConsumingPower).add(currentPower);
-                System.out.println(consuming.doubleValue());
+                System.out.println(c.getTime() + " >>> " + consuming.doubleValue());
                 bean.getVal()[j] = consuming.doubleValue();
                 bean.getValC()[j] = consuming.multiply(k).doubleValue();
-                bean.setTime(dstFormat.format(c.getTime()));
+                bean.setTime(time);
             }
             dataList.add(bean);
         }
