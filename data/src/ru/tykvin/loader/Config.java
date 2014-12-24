@@ -1,5 +1,6 @@
 package ru.tykvin.loader;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,8 +10,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
-import ru.tykvin.util.MathUtil;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
@@ -38,28 +37,21 @@ public class Config {
     @XmlElement
     private String maker;
 
+    @XmlElement
+    private String correction;
+
 	@XmlElement
 	public void setTimesFormat(String timesFormat) {
 		Constants.timesFormat = timesFormat;
 	}
 
-    /**
-     * Коэффициент для коррекции показаний
-     * 
-     * @return
-     */
-	@XmlElement
-    public void setCorrection(String correction) {
-		MathUtil.setCorrection(correction);
-    }
-	
 	/**
 	 * Коэффициент трасформации
 	 * 
 	 * @return
 	 */
-	public Integer getCoefficient() {
-		return coefficient;
+    public BigDecimal getCoefficient() {
+        return BigDecimal.valueOf(coefficient);
 	}
 
 	public void setCoefficient(Integer coefficient) {
@@ -136,6 +128,19 @@ public class Config {
 
     public void setMaker(String maker) {
         this.maker = maker;
+    }
+
+    /**
+     * Коэффициент для коррекции показаний
+     * 
+     * @return
+     */
+    public BigDecimal getCorrection() {
+        return BigDecimal.valueOf(Double.valueOf(correction));
+    }
+
+    public void setCorrection(String correction) {
+        this.correction = correction.replace(",", ".");
     }
 
 }

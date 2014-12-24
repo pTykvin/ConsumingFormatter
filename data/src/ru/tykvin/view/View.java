@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.File;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.List;
 
@@ -156,11 +157,12 @@ public class View extends JFrame {
             s = source.get(i);
             try {
                 if (s != null) {
-                    String consuming = JOptionPane.showInputDialog(this, "Введите стартовое показание для " + s.getNumber());
+                    String consuming = JOptionPane.showInputDialog(this, "Введите показание на 9:00 для " + s.getNumber());
                     if (consuming == null || consuming.trim() == "") {
                         throw new NumberFormatException("Введите не пустое значение");
                     }
-                    s.setBeginConsuming(Double.parseDouble(consuming));
+                    consuming = consuming.replaceAll(",", "\\.");
+                    s.setBeginConsuming(BigDecimal.valueOf(Double.parseDouble(consuming)));
                 }
                 i++;
             } catch (NumberFormatException e) {

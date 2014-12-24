@@ -2,9 +2,11 @@ package ru.tykvin.model.data;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -21,18 +23,16 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import ru.tykvin.util.MathUtil;
-
 public class Source {
 
     private Date date;
     private String number;
     private SimpleDateFormat headFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss"); //18.12.2014 17:07:45
     private SimpleDateFormat consumingFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm"); //18.12.2014 17:07:45
-    private Map<Date, Long> map = new HashMap<Date, Long>();
+    private Map<Date, BigDecimal> map = new HashMap<Date, BigDecimal>();
     private NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
-	private long sum;
-    private long beginConsuming = 0;
+    private BigDecimal sum = BigDecimal.valueOf(0);
+    private BigDecimal beginConsuming = BigDecimal.valueOf(0);
 
     public Source(File elementAt) throws Exception {
         if (!elementAt.exists()) {
@@ -82,7 +82,11 @@ public class Source {
         
         { // Перебираем все строки
             Node row = null;
-            sum = 0;
+            sum = BigDecimal.valueOf(0);
+            //            Calendar c = Calendar.getInstance();
+            //            c.clear();
+            //            System.out.println(c.getTime() + " : " + sum.doubleValue());
+            //            map.put(c.getTime(), sum);
             for (i = 0; i < rows.getLength(); row = getNode(rows.item(i)), i++) {
             	if (row != null && row.getNodeType() != Node.TEXT_NODE) {
 	                parseNumber(row.getChildNodes());
@@ -141,14 +145,48 @@ public class Source {
             Node node = getFirstNode(row);
             try {
             	Node firstNode = getFirstNode(node);
-				Date date = consumingFormat.parse(getValue(firstNode));				
-				long value = MathUtil.toLong(getValue(getNextNode(node)));			    
-			    sum += value;
+                String dateValue = getValue(firstNode);
+                if (dateValue.contains("-")) {
+                    date = getRangeDate(dateValue);
+                } else {
+                    date = getSimpleDate(dateValue);
+                }
+                String str = getValue(getNextNode(node)).replaceAll(",", ".");
+                BigDecimal value = BigDecimal.valueOf(Double.parseDouble(str));
+                sum = sum.add(value);
                 map.put(date, sum);
                 System.out.println(date + " : " + sum);
             } catch (DOMException | ParseException e) {
             }
         }
+    }
+
+    // начальное = 9 утра
+    private Date getSimpleDate(String dateValue) throws ParseException {
+        return prepareDate(consumingFormat.parse(dateValue));
+    }
+
+    private Date prepareDate(Date time) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(time);
+        Calendar result = Calendar.getInstance();
+        result.clear();
+        result.add(Calendar.HOUR_OF_DAY, c.get(Calendar.HOUR_OF_DAY));
+        result.add(Calendar.MINUTE, c.get(Calendar.MINUTE));
+        while (map.containsKey(result.getTime())) {
+            result.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        result.add(Calendar.MINUTE, -30);
+        return result.getTime();
+    }
+
+    private Date getRangeDate(String dateValue) throws ParseException {
+        dateValue = dateValue.split("-")[0].trim();
+        date = consumingFormat.parse(dateValue);
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.MINUTE, 30);
+        return prepareDate(c.getTime());
     }
 
     private Node getFirstNode(Node node) throws ParseException {
@@ -174,24 +212,28 @@ public class Source {
         return number;
     }
 
+    public Map<Date, BigDecimal> getConsumings() {
+        return map;
+    }
+
     public Date getDate() {
         return date;
     }
 
-	public long getSum() {
+    public BigDecimal getSum() {
 		return sum;
 	}
 
-    public void setBeginConsuming(Double consuming) {
-        this.beginConsuming = MathUtil.toLong(String.valueOf(consuming));
+    public void setBeginConsuming(BigDecimal consuming) {
+        this.beginConsuming = consuming;
     }
 
-	public Long getBeginConsuming() {
+    public BigDecimal getBeginConsuming() {
         return beginConsuming;
 	}
 
-    public long get(Date time) {
-        return map.get(time);
+    public BigDecimal get(Date time) {
+        return getConsumings().get(time);
     }
 
 }
