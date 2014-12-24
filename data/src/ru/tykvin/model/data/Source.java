@@ -144,6 +144,7 @@ public class Source {
             try {
             	Node firstNode = getFirstNode(node);
                 String dateValue = getValue(firstNode);
+                Date date;
                 if (dateValue.contains("-")) {
                     date = getRangeDate(dateValue);
                 } else {
@@ -180,7 +181,7 @@ public class Source {
 
     private Date getRangeDate(String dateValue) throws ParseException {
         dateValue = dateValue.split("-")[0].trim();
-        date = consumingFormat.parse(dateValue);
+        Date date = consumingFormat.parse(dateValue);
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         c.add(Calendar.MINUTE, 30);
