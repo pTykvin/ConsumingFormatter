@@ -77,28 +77,28 @@
 	<title>
 		<band height="60" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="572" height="15" uuid="09cc15e1-e7f2-417c-a3b7-ad32b3c8ec53"/>
+				<reportElement style="textStyle" x="0" y="0" width="572" height="15" uuid="09cc15e1-e7f2-417c-a3b7-ad32b3c8ec53"/>
 				<textElement>
-					<font pdfEncoding="Cp1251"/>
+					<font pdfEncoding="Cp1251" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Почасовая нагрузка за " + $P{DATE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="15" width="572" height="15" uuid="b0c850af-eda7-40e1-a51e-f1427c6dd6b6"/>
+				<reportElement style="textStyle" x="0" y="15" width="572" height="15" uuid="b0c850af-eda7-40e1-a51e-f1427c6dd6b6"/>
 				<textElement>
 					<font pdfEncoding="Cp1251"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Наименование: " + $P{COMPANY}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="30" width="572" height="15" uuid="ce4b263c-c9c6-45f9-819b-15227d8bbd28"/>
+				<reportElement style="textStyle" x="0" y="30" width="572" height="15" uuid="ce4b263c-c9c6-45f9-819b-15227d8bbd28"/>
 				<textElement>
 					<font pdfEncoding="Cp1251"/>
 				</textElement>
 				<textFieldExpression><![CDATA["№ договора: " + $P{CONTRACT}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="45" width="572" height="15" uuid="520d1520-1936-4486-b23e-957754c797ad"/>
+				<reportElement style="textStyle" x="0" y="45" width="572" height="15" uuid="520d1520-1936-4486-b23e-957754c797ad"/>
 				<textElement>
 					<font pdfEncoding="Cp1251"/>
 				</textElement>

@@ -8,12 +8,23 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 //create a single Jar with all dependencies
+jar {
+	manifest {
+        	attributes 'Implementation-Title': 'AmberReport Fat',  
+	        	'Implementation-Version': version,
+        		'Main-Class': 'ru.tykvin.loader.Loader'
+    		}
+	from ('src/main/java') {
+		include '**/*.png'
+	}	
+}
+
 task fatJar(type: Jar) {
 	manifest {
         attributes 'Implementation-Title': 'AmberReport Fat',  
         	'Implementation-Version': version,
         	'Main-Class': 'ru.tykvin.loader.Loader'
-    }
+    	}
     baseName = project.name + '-all'
     from { 
 		configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } 		
