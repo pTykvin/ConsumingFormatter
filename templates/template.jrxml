@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ShowPerson" pageWidth="612" pageHeight="792" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="304c4c4e-c99a-4399-8081-748d3b7c0b8c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="textStyle" forecolor="#000000" hAlign="Left" vAlign="Middle" fontName="Times New Roman" fontSize="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1251"/>
+	<subDataset name="Table Dataset 1" whenResourceMissingType="Empty" uuid="63b01547-bce2-47c9-ba15-666f94d11387">
+		<parameter name="TYPE" class="java.lang.String"/>
+		<parameter name="COEFFICIENT" class="java.lang.Integer"/>
+		<parameter name="COUNTER1" class="java.lang.String"/>
+		<parameter name="COUNTER2" class="java.lang.String"/>
+		<parameter name="COUNTER3" class="java.lang.String"/>
+		<parameter name="COUNTER4" class="java.lang.String"/>
+		<parameter name="SUM1" class="java.lang.Double"/>
+		<parameter name="SUM2" class="java.lang.Double"/>
+		<parameter name="SUM3" class="java.lang.Double"/>
+		<parameter name="SUM4" class="java.lang.Double"/>
+		<parameter name="SUMC1" class="java.lang.Double"/>
+		<parameter name="SUMC2" class="java.lang.Double"/>
+		<parameter name="SUMC3" class="java.lang.Double"/>
+		<parameter name="SUMC4" class="java.lang.Double"/>
+		<queryString language="SQL">
+			<![CDATA[]]>
+		</queryString>
+		<field name="time" class="java.lang.String"/>
+		<field name="val1" class="java.lang.Double"/>
+		<field name="val2" class="java.lang.Double"/>
+		<field name="val3" class="java.lang.Double"/>
+		<field name="val4" class="java.lang.Double"/>
+		<field name="val1C" class="java.lang.Double"/>
+		<field name="val2C" class="java.lang.Double"/>
+		<field name="val3C" class="java.lang.Double"/>
+		<field name="val4C" class="java.lang.Double"/>
+	</subDataset>
+	<parameter name="DATE" class="java.lang.String"/>
+	<parameter name="COMPANY" class="java.lang.String"/>
+	<parameter name="CONTRACT" class="java.lang.String"/>
+	<parameter name="CODE" class="java.lang.String"/>
+	<parameter name="TYPE" class="java.lang.String"/>
+	<parameter name="COEFFICIENT" class="java.lang.Integer"/>
+	<parameter name="COUNTER1" class="java.lang.String"/>
+	<parameter name="COUNTER2" class="java.lang.String"/>
+	<parameter name="COUNTER3" class="java.lang.String"/>
+	<parameter name="COUNTER4" class="java.lang.String"/>
+	<parameter name="SUM1" class="java.lang.Double"/>
+	<parameter name="SUM2" class="java.lang.Double"/>
+	<parameter name="SUM3" class="java.lang.Double"/>
+	<parameter name="SUM4" class="java.lang.Double"/>
+	<parameter name="SUMC1" class="java.lang.Double"/>
+	<parameter name="SUMC2" class="java.lang.Double"/>
+	<parameter name="SUMC3" class="java.lang.Double"/>
+	<parameter name="SUMC4" class="java.lang.Double"/>
+	<parameter name="MAKER" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="572" height="15" uuid="09cc15e1-e7f2-417c-a3b7-ad32b3c8ec53"/>
+				<textElement>
+					<font pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Почасовая нагрузка за " + $P{DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="15" width="572" height="15" uuid="b0c850af-eda7-40e1-a51e-f1427c6dd6b6"/>
+				<textElement>
+					<font pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Наименование: " + $P{COMPANY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="30" width="572" height="15" uuid="ce4b263c-c9c6-45f9-819b-15227d8bbd28"/>
+				<textElement>
+					<font pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["№ договора: " + $P{CONTRACT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="45" width="572" height="15" uuid="520d1520-1936-4486-b23e-957754c797ad"/>
+				<textElement>
+					<font pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Код потребителя: " + $P{CODE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 1" x="0" y="0" width="572" height="40" uuid="dea5d821-81b6-434b-ae27-4f3a0268e805"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset 1" uuid="6c0273db-3b23-41c1-ba48-45a2a8bd4f8a">
+						<datasetParameter name="REPORT_DATA_SOURCE">
+							<datasetParameterExpression><![CDATA[]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="TYPE">
+							<datasetParameterExpression><![CDATA[$P{TYPE}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="COEFFICIENT">
+							<datasetParameterExpression><![CDATA[$P{COEFFICIENT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="COUNTER1">
+							<datasetParameterExpression><![CDATA[$P{COUNTER1}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="COUNTER2">
+							<datasetParameterExpression><![CDATA[$P{COUNTER2}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="COUNTER3">
+							<datasetParameterExpression><![CDATA[$P{COUNTER3}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="COUNTER4">
+							<datasetParameterExpression><![CDATA[$P{COUNTER4}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="SUM1">
+							<datasetParameterExpression><![CDATA[$P{SUM1}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="SUM2">
+							<datasetParameterExpression><![CDATA[$P{SUM2}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="SUM3">
+							<datasetParameterExpression><![CDATA[$P{SUM3}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="SUM4">
+							<datasetParameterExpression><![CDATA[$P{SUM4}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="SUMC1">
+							<datasetParameterExpression><![CDATA[$P{SUMC1}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="SUMC2">
+							<datasetParameterExpression><![CDATA[$P{SUMC2}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="SUMC3">
+							<datasetParameterExpression><![CDATA[$P{SUMC3}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="SUMC4">
+							<datasetParameterExpression><![CDATA[$P{SUMC4}]]></datasetParameterExpression>
+						</datasetParameter>
+						<dataSourceExpression><![CDATA[$P{REPORT_DATA_SOURCE}]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="62" uuid="bd98cda5-4c05-4a37-b3ae-329b18892c76">
+						<jr:tableHeader style="table_TH" height="84" rowSpan="4">
+							<staticText>
+								<reportElement style="textStyle" x="0" y="0" width="58" height="84" uuid="c75472fc-81f9-40da-9e99-1da3a1074b4c"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Часы]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:tableFooter style="textStyle" height="15" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" x="0" y="0" width="62" height="15" uuid="d48734e2-4d5e-4de2-a5dd-e2aea860584a"/>
+								<text><![CDATA[Всего]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement style="textStyle" mode="Transparent" x="0" y="0" width="62" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="779e20f2-f21b-48fb-ba38-d95f1ce1aa5d"/>
+								<textElement verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1251" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[ИТОГО]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="14" rowSpan="1">
+							<textField>
+								<reportElement style="textStyle" x="0" y="0" width="62" height="14" uuid="040bd612-abea-4e56-9394-802f96b8d948"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{time}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:columnGroup width="488" uuid="18fc6012-8626-41cc-b755-d6cc1b483747">
+						<jr:tableHeader style="table_TH" height="15" rowSpan="1">
+							<textField>
+								<reportElement style="textStyle" x="0" y="0" width="488" height="15" uuid="dc4a2a8c-83de-4db3-8e88-16ec129528a2"/>
+								<textFieldExpression><![CDATA["счетчик активной и реактивной энергии тип " + $P{TYPE}]]></textFieldExpression>
+							</textField>
+						</jr:tableHeader>
+						<jr:columnGroup width="122" uuid="ab36f534-de59-41be-ae81-be1bac0a247d">
+							<jr:tableHeader style="table_TH" height="15" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement style="textStyle" x="0" y="0" width="122" height="15" uuid="29f501d1-ba51-433e-99be-3c51f8374dd2"/>
+									<textElement>
+										<font pdfEncoding="Cp1251"/>
+									</textElement>
+									<textFieldExpression><![CDATA["№" + $P{COUNTER1}]]></textFieldExpression>
+								</textField>
+							</jr:tableHeader>
+							<jr:columnGroup width="122" uuid="ee6a6624-9a79-466d-8df1-f554e2fc3c72">
+								<jr:tableHeader style="table_TH" height="15" rowSpan="1">
+									<textField isBlankWhenNull="true">
+										<reportElement style="textStyle" x="0" y="0" width="122" height="15" uuid="a916fbf1-faf1-416f-b74d-9c7933b8b451"/>
+										<textElement>
+											<font pdfEncoding="Cp1251"/>
+										</textElement>
+										<textFieldExpression><![CDATA["Ктранс = " + $P{COEFFICIENT}]]></textFieldExpression>
+									</textField>
+								</jr:tableHeader>
+								<jr:column width="60" uuid="832f79f1-33de-417c-b934-3fd2b8ee417a">
+									<jr:tableHeader style="table_TH" height="39" rowSpan="1">
+										<staticText>
+											<reportElement style="textStyle" x="0" y="0" width="60" height="39" uuid="467521f4-df7b-45f5-86a4-1425fc788d26"/>
+											<text><![CDATA[Показания]]></text>
+										</staticText>
+									</jr:tableHeader>
+									<jr:tableFooter style="table_TD" height="15" rowSpan="1"/>
+									<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
+									<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="60" height="15" uuid="680eaf66-5cae-45de-8bf2-2ca940169048"/>
+											<textElement>
+												<font pdfEncoding="Cp1251"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$P{SUM1}]]></textFieldExpression>
+										</textField>
+									</jr:columnFooter>
+									<jr:detailCell style="table_TD" height="14" rowSpan="1">
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="60" height="14" uuid="c03d4da2-e3da-4bb4-af71-3c93be795a16"/>
+											<textElement>
+												<font pdfEncoding="Cp1251"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$F{val1}]]></textFieldExpression>
+										</textField>
+									</jr:detailCell>
+								</jr:column>
+								<jr:column width="62" uuid="e5669137-354f-475e-b882-c0e7e5fc8626">
+									<jr:tableHeader style="table_TH" height="39" rowSpan="1">
+										<staticText>
+											<reportElement style="textStyle" x="0" y="0" width="62" height="39" uuid="0621a479-5b29-4b53-bba1-2e0162762e66"/>
+											<text><![CDATA[Расход c учетом Ктранс. ]]></text>
+										</staticText>
+									</jr:tableHeader>
+									<jr:tableFooter style="table_TD" height="15" rowSpan="1"/>
+									<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
+									<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="62" height="15" uuid="ae88be09-7fa5-4470-8924-34fba4c61c2c"/>
+											<textElement>
+												<font pdfEncoding="Cp1251"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$P{SUMC1}]]></textFieldExpression>
+										</textField>
+									</jr:columnFooter>
+									<jr:detailCell style="table_TD" height="14" rowSpan="1">
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="62" height="14" uuid="ca2a7144-53f7-42aa-b066-1bf4ade7c448"/>
+											<textElement>
+												<font pdfEncoding="Cp1251"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$F{val1C}]]></textFieldExpression>
+										</textField>
+									</jr:detailCell>
+								</jr:column>
+							</jr:columnGroup>
+						</jr:columnGroup>
+						<jr:columnGroup width="122" uuid="b07ee40f-34a7-442a-bd90-b1483a9c3f8a">
+							<jr:tableHeader style="table_TH" height="15" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement style="textStyle" x="0" y="0" width="122" height="15" uuid="fab0efc4-b806-4263-a338-97c1a593d7fa"/>
+									<textElement>
+										<font pdfEncoding="Cp1251"/>
+									</textElement>
+									<textFieldExpression><![CDATA["№" + $P{COUNTER2}]]></textFieldExpression>
+								</textField>
+							</jr:tableHeader>
+							<jr:columnGroup width="122" uuid="2e5dcdf3-1c30-458b-9a26-8be2b59be824">
+								<jr:tableHeader style="table_TH" height="15" rowSpan="1">
+									<textField isBlankWhenNull="true">
+										<reportElement style="textStyle" x="0" y="0" width="122" height="15" uuid="530ead80-8cd7-48cf-ab0c-6df69bec245f"/>
+										<textElement>
+											<font pdfEncoding="Cp1251"/>
+										</textElement>
+										<textFieldExpression><![CDATA["Ктранс = " + $P{COEFFICIENT}]]></textFieldExpression>
+									</textField>
+								</jr:tableHeader>
+								<jr:column width="60" uuid="cb97af9b-873b-4d01-8161-3e945d909f5f">
+									<jr:tableHeader style="table_TH" height="39" rowSpan="1">
+										<staticText>
+											<reportElement style="textStyle" x="0" y="0" width="60" height="39" uuid="aab3d2bc-278c-4cae-a625-7eb43bb27e18"/>
+											<text><![CDATA[Показания]]></text>
+										</staticText>
+									</jr:tableHeader>
+									<jr:tableFooter style="table_TD" height="15" rowSpan="1"/>
+									<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
+									<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="60" height="15" uuid="47916538-0641-4bf9-917f-d9cb390ffe75"/>
+											<textElement>
+												<font pdfEncoding="Cp1251"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$P{SUM2}]]></textFieldExpression>
+										</textField>
+									</jr:columnFooter>
+									<jr:detailCell style="table_TD" height="14" rowSpan="1">
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="60" height="14" uuid="bf13dd32-4031-4fbc-a44a-81c4eb672a00"/>
+											<textElement>
+												<font pdfEncoding="Cp1251"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$F{val2}]]></textFieldExpression>
+										</textField>
+									</jr:detailCell>
+								</jr:column>
+								<jr:column width="62" uuid="237cc94d-4010-41ac-ab95-dd081497e63d">
+									<jr:tableHeader style="table_TH" height="39" rowSpan="1">
+										<staticText>
+											<reportElement style="textStyle" x="0" y="0" width="62" height="39" uuid="e45be8ff-d5c3-488c-989f-c74d910d08b8"/>
+											<text><![CDATA[Расход c учетом Ктранс. ]]></text>
+										</staticText>
+									</jr:tableHeader>
+									<jr:tableFooter style="table_TD" height="15" rowSpan="1"/>
+									<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
+									<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="62" height="15" uuid="23a60e33-0d05-4fa2-bec2-f7172aecbaac"/>
+											<textElement>
+												<font pdfEncoding="Cp1251"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$P{SUMC2}]]></textFieldExpression>
+										</textField>
+									</jr:columnFooter>
+									<jr:detailCell style="table_TD" height="14" rowSpan="1">
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="62" height="14" uuid="c6c40738-6c17-487f-a384-8dd3bd7704c5"/>
+											<textElement>
+												<font pdfEncoding="Cp1251"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$F{val2C}]]></textFieldExpression>
+										</textField>
+									</jr:detailCell>
+								</jr:column>
+							</jr:columnGroup>
+						</jr:columnGroup>
+						<jr:columnGroup width="122" uuid="4c096629-ee6a-42bb-a9dd-3aad46e67757">
+							<jr:tableHeader style="table_TH" height="15" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement style="textStyle" x="0" y="0" width="122" height="15" uuid="bda6f53f-80d0-4764-b1a1-ddd2fd44c3f7"/>
+									<textElement>
+										<font pdfEncoding="Cp1251"/>
+									</textElement>
+									<textFieldExpression><![CDATA["№" + $P{COUNTER3}]]></textFieldExpression>
+								</textField>
+							</jr:tableHeader>
+							<jr:columnGroup width="122" uuid="12666705-b13c-47ce-addf-63f0076c896b">
+								<jr:tableHeader style="table_TH" height="15" rowSpan="1">
+									<textField isBlankWhenNull="true">
+										<reportElement style="textStyle" x="0" y="0" width="122" height="15" uuid="6f3fc3b0-dfc9-4d0f-aacc-c7dc81aff57a"/>
+										<textElement>
+											<font pdfEncoding="Cp1251"/>
+										</textElement>
+										<textFieldExpression><![CDATA["Ктранс = " + $P{COEFFICIENT}]]></textFieldExpression>
+									</textField>
+								</jr:tableHeader>
+								<jr:column width="60" uuid="1aacb22a-2323-4deb-8dfd-d08b1bb63ebd">
+									<jr:tableHeader style="table_TH" height="39" rowSpan="1">
+										<staticText>
+											<reportElement style="textStyle" x="0" y="0" width="60" height="39" uuid="64837ce4-d376-4c71-b61d-a27f4abf748e"/>
+											<text><![CDATA[Показания]]></text>
+										</staticText>
+									</jr:tableHeader>
+									<jr:tableFooter style="table_TD" height="15" rowSpan="1"/>
+									<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
+									<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="60" height="15" uuid="150fda20-331a-4842-95d4-c03584a12da2"/>
+											<textElement>
+												<font pdfEncoding="Cp1251"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$P{SUM3}]]></textFieldExpression>
+										</textField>
+									</jr:columnFooter>
+									<jr:detailCell style="table_TD" height="14" rowSpan="1">
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="60" height="14" uuid="ce370654-60ad-43c4-910d-9aadda71bb35"/>
+											<textElement>
+												<font pdfEncoding="Cp1251"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$F{val3}]]></textFieldExpression>
+										</textField>
+									</jr:detailCell>
+								</jr:column>
+								<jr:column width="62" uuid="58636fd8-b495-4294-8d7c-e9833cf1defc">
+									<jr:tableHeader style="table_TH" height="39" rowSpan="1">
+										<staticText>
+											<reportElement style="textStyle" x="0" y="0" width="62" height="39" uuid="9fa04b3f-5b45-4f06-b029-641588adb291"/>
+											<text><![CDATA[Расход c учетом Ктранс. ]]></text>
+										</staticText>
+									</jr:tableHeader>
+									<jr:tableFooter style="table_TD" height="15" rowSpan="1"/>
+									<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
+									<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="62" height="15" uuid="6c5d7abd-8d94-4dce-8f70-ed2b5e0a0419"/>
+											<textElement>
+												<font pdfEncoding="Cp1251"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$P{SUMC3}]]></textFieldExpression>
+										</textField>
+									</jr:columnFooter>
+									<jr:detailCell style="table_TD" height="14" rowSpan="1">
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="62" height="14" uuid="efa274a0-9767-46ba-819b-6743ab99f8af"/>
+											<textElement>
+												<font pdfEncoding="Cp1251"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$F{val3C}]]></textFieldExpression>
+										</textField>
+									</jr:detailCell>
+								</jr:column>
+							</jr:columnGroup>
+						</jr:columnGroup>
+						<jr:columnGroup width="122" uuid="a52fd11f-7c1c-42d6-8fd8-ea21e44b03c4">
+							<jr:tableHeader style="table_TH" height="15" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement style="textStyle" x="0" y="0" width="122" height="15" uuid="a51332e0-4a2e-4469-8377-bf71c3711cf7"/>
+									<textElement>
+										<font pdfEncoding="Cp1251"/>
+									</textElement>
+									<textFieldExpression><![CDATA["№" + $P{COUNTER4}]]></textFieldExpression>
+								</textField>
+							</jr:tableHeader>
+							<jr:columnGroup width="122" uuid="327306a9-4883-4d59-a57f-0a7595828255">
+								<jr:tableHeader style="table_TH" height="15" rowSpan="1">
+									<textField isBlankWhenNull="true">
+										<reportElement style="textStyle" x="0" y="0" width="122" height="15" uuid="58e8291c-61a9-4f00-8490-b0843ded0516"/>
+										<textElement>
+											<font pdfEncoding="Cp1251"/>
+										</textElement>
+										<textFieldExpression><![CDATA["Ктранс = " + $P{COEFFICIENT}]]></textFieldExpression>
+									</textField>
+								</jr:tableHeader>
+								<jr:column width="60" uuid="4936ded5-631c-4fa3-a7aa-5a3e02b43711">
+									<jr:tableHeader style="table_TH" height="39" rowSpan="1">
+										<staticText>
+											<reportElement style="textStyle" x="0" y="0" width="60" height="39" uuid="66002129-2c95-4904-9c3e-6b57bf9fbf6d"/>
+											<text><![CDATA[Показания]]></text>
+										</staticText>
+									</jr:tableHeader>
+									<jr:tableFooter style="table_TD" height="15" rowSpan="1"/>
+									<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
+									<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="60" height="15" uuid="ae87fae1-eef9-4104-9900-bb8a0d23fb5f"/>
+											<textElement>
+												<font pdfEncoding="Cp1251"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$P{SUM4}]]></textFieldExpression>
+										</textField>
+									</jr:columnFooter>
+									<jr:detailCell style="table_TD" height="14" rowSpan="1">
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="60" height="14" uuid="da283b6b-2a8e-494b-a83e-a68cfe5ed56d"/>
+											<textElement>
+												<font pdfEncoding="Cp1251"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$F{val4}]]></textFieldExpression>
+										</textField>
+									</jr:detailCell>
+								</jr:column>
+								<jr:column width="62" uuid="3d09e972-f5fa-480b-b81b-75a522dbdbcb">
+									<jr:tableHeader style="table_TH" height="39" rowSpan="1">
+										<staticText>
+											<reportElement style="textStyle" x="0" y="0" width="62" height="39" uuid="d11b75bd-cc2f-43b1-82c5-699fe006bcc8"/>
+											<text><![CDATA[Расход c учетом Ктранс. ]]></text>
+										</staticText>
+									</jr:tableHeader>
+									<jr:tableFooter style="table_TD" height="15" rowSpan="1"/>
+									<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
+									<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="62" height="15" uuid="25d0a462-b56b-45ba-82f1-540b0256ec2a"/>
+											<textElement>
+												<font pdfEncoding="Cp1251"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$P{SUMC4}]]></textFieldExpression>
+										</textField>
+									</jr:columnFooter>
+									<jr:detailCell style="table_TD" height="14" rowSpan="1">
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="62" height="14" uuid="0436205e-3c2a-4e00-8aa6-d4750665dda8"/>
+											<textElement>
+												<font pdfEncoding="Cp1251"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$F{val4C}]]></textFieldExpression>
+										</textField>
+									</jr:detailCell>
+								</jr:column>
+							</jr:columnGroup>
+						</jr:columnGroup>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="16">
+			<textField>
+				<reportElement x="0" y="0" width="572" height="16" uuid="6f7a3aa9-7fa9-42c4-88a4-7c151920fdcf"/>
+				<textFieldExpression><![CDATA["Исполнитель: " + $P{MAKER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -20,10 +20,8 @@ task fatJar(type: Jar) {
 	}
 	with jar
 	
-	jar {
-		from ('src/main/java') {
-			include '**/*.png'
-		}
+	from ('src/main/java') {
+		include '**/*.png'
 	}
 }
  

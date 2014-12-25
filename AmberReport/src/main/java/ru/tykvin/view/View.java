@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.io.File;
 import java.math.BigDecimal;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -24,6 +25,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import net.sf.jasperreports.engine.JRException;
 import ru.tykvin.controller.Controller;
+import ru.tykvin.loader.Constants;
 import ru.tykvin.model.Model;
 import ru.tykvin.model.data.Source;
 
@@ -162,7 +164,7 @@ public class View extends JFrame {
             s = source.get(i);
             try {
                 if (s != null) {
-                    String consuming = JOptionPane.showInputDialog(this, "Введите показание на 9:00 для " + s.getNumber());
+                    String consuming = JOptionPane.showInputDialog(this, String.format("Введите показание на %s для %s", (new SimpleDateFormat("HH:mm")).format(Constants.beginConsumingTime), s.getNumber()));
                     if (consuming == null || consuming.trim() == "") {
                         throw new NumberFormatException("Введите не пустое значение");
                     }
