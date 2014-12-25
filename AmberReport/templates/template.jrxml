@@ -229,8 +229,8 @@
 									<jr:tableFooter style="table_TD" height="15" rowSpan="1"/>
 									<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
 									<jr:columnFooter style="table_CH" height="15" rowSpan="1">
-										<textField pattern="###0.0000" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="60" height="15" uuid="680eaf66-5cae-45de-8bf2-2ca940169048"/>
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="60" height="15" uuid="680eaf66-5cae-45de-8bf2-2ca940169048"/>
 											<textElement>
 												<font pdfEncoding="Cp1251"/>
 											</textElement>
@@ -238,8 +238,8 @@
 										</textField>
 									</jr:columnFooter>
 									<jr:detailCell style="table_TD" height="14" rowSpan="1">
-										<textField pattern="###0.0000" isBlankWhenNull="true">
-											<reportElement style="textStyle" x="0" y="0" width="60" height="14" uuid="c03d4da2-e3da-4bb4-af71-3c93be795a16"/>
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="60" height="14" uuid="c03d4da2-e3da-4bb4-af71-3c93be795a16"/>
 											<textElement>
 												<font pdfEncoding="Cp1251"/>
 											</textElement>
@@ -257,8 +257,8 @@
 									<jr:tableFooter style="table_TD" height="15" rowSpan="1"/>
 									<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
 									<jr:columnFooter style="table_CH" height="15" rowSpan="1">
-										<textField pattern="###0.000" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="62" height="15" uuid="ae88be09-7fa5-4470-8924-34fba4c61c2c"/>
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="62" height="15" uuid="ae88be09-7fa5-4470-8924-34fba4c61c2c"/>
 											<textElement>
 												<font pdfEncoding="Cp1251"/>
 											</textElement>
@@ -266,8 +266,8 @@
 										</textField>
 									</jr:columnFooter>
 									<jr:detailCell style="table_TD" height="14" rowSpan="1">
-										<textField pattern="###0.000" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="62" height="14" uuid="ca2a7144-53f7-42aa-b066-1bf4ade7c448"/>
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="62" height="14" uuid="ca2a7144-53f7-42aa-b066-1bf4ade7c448"/>
 											<textElement>
 												<font pdfEncoding="Cp1251"/>
 											</textElement>
@@ -307,8 +307,8 @@
 									<jr:tableFooter style="table_TD" height="15" rowSpan="1"/>
 									<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
 									<jr:columnFooter style="table_CH" height="15" rowSpan="1">
-										<textField pattern="###0.0000" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="60" height="15" uuid="47916538-0641-4bf9-917f-d9cb390ffe75"/>
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="60" height="15" uuid="47916538-0641-4bf9-917f-d9cb390ffe75"/>
 											<textElement>
 												<font pdfEncoding="Cp1251"/>
 											</textElement>
@@ -316,8 +316,8 @@
 										</textField>
 									</jr:columnFooter>
 									<jr:detailCell style="table_TD" height="14" rowSpan="1">
-										<textField pattern="###0.0000" isBlankWhenNull="true">
-											<reportElement style="textStyle" x="0" y="0" width="60" height="14" uuid="bf13dd32-4031-4fbc-a44a-81c4eb672a00"/>
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="60" height="14" uuid="bf13dd32-4031-4fbc-a44a-81c4eb672a00"/>
 											<textElement>
 												<font pdfEncoding="Cp1251"/>
 											</textElement>
@@ -335,8 +335,8 @@
 									<jr:tableFooter style="table_TD" height="15" rowSpan="1"/>
 									<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
 									<jr:columnFooter style="table_CH" height="15" rowSpan="1">
-										<textField pattern="###0.000" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="62" height="15" uuid="23a60e33-0d05-4fa2-bec2-f7172aecbaac"/>
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="62" height="15" uuid="23a60e33-0d05-4fa2-bec2-f7172aecbaac"/>
 											<textElement>
 												<font pdfEncoding="Cp1251"/>
 											</textElement>
@@ -344,8 +344,8 @@
 										</textField>
 									</jr:columnFooter>
 									<jr:detailCell style="table_TD" height="14" rowSpan="1">
-										<textField pattern="###0.000" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="62" height="14" uuid="c6c40738-6c17-487f-a384-8dd3bd7704c5"/>
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="62" height="14" uuid="c6c40738-6c17-487f-a384-8dd3bd7704c5"/>
 											<textElement>
 												<font pdfEncoding="Cp1251"/>
 											</textElement>
@@ -385,8 +385,8 @@
 									<jr:tableFooter style="table_TD" height="15" rowSpan="1"/>
 									<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
 									<jr:columnFooter style="table_CH" height="15" rowSpan="1">
-										<textField pattern="###0.0000" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="60" height="15" uuid="150fda20-331a-4842-95d4-c03584a12da2"/>
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="60" height="15" uuid="150fda20-331a-4842-95d4-c03584a12da2"/>
 											<textElement>
 												<font pdfEncoding="Cp1251"/>
 											</textElement>
@@ -394,8 +394,8 @@
 										</textField>
 									</jr:columnFooter>
 									<jr:detailCell style="table_TD" height="14" rowSpan="1">
-										<textField pattern="###0.0000" isBlankWhenNull="true">
-											<reportElement style="textStyle" x="0" y="0" width="60" height="14" uuid="ce370654-60ad-43c4-910d-9aadda71bb35"/>
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="60" height="14" uuid="ce370654-60ad-43c4-910d-9aadda71bb35"/>
 											<textElement>
 												<font pdfEncoding="Cp1251"/>
 											</textElement>
@@ -413,8 +413,8 @@
 									<jr:tableFooter style="table_TD" height="15" rowSpan="1"/>
 									<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
 									<jr:columnFooter style="table_CH" height="15" rowSpan="1">
-										<textField pattern="###0.000" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="62" height="15" uuid="6c5d7abd-8d94-4dce-8f70-ed2b5e0a0419"/>
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="62" height="15" uuid="6c5d7abd-8d94-4dce-8f70-ed2b5e0a0419"/>
 											<textElement>
 												<font pdfEncoding="Cp1251"/>
 											</textElement>
@@ -422,8 +422,8 @@
 										</textField>
 									</jr:columnFooter>
 									<jr:detailCell style="table_TD" height="14" rowSpan="1">
-										<textField pattern="###0.000" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="62" height="14" uuid="efa274a0-9767-46ba-819b-6743ab99f8af"/>
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="62" height="14" uuid="efa274a0-9767-46ba-819b-6743ab99f8af"/>
 											<textElement>
 												<font pdfEncoding="Cp1251"/>
 											</textElement>
@@ -463,8 +463,8 @@
 									<jr:tableFooter style="table_TD" height="15" rowSpan="1"/>
 									<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
 									<jr:columnFooter style="table_CH" height="15" rowSpan="1">
-										<textField pattern="###0.0000" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="60" height="15" uuid="ae87fae1-eef9-4104-9900-bb8a0d23fb5f"/>
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="60" height="15" uuid="ae87fae1-eef9-4104-9900-bb8a0d23fb5f"/>
 											<textElement>
 												<font pdfEncoding="Cp1251"/>
 											</textElement>
@@ -472,8 +472,8 @@
 										</textField>
 									</jr:columnFooter>
 									<jr:detailCell style="table_TD" height="14" rowSpan="1">
-										<textField pattern="###0.0000" isBlankWhenNull="true">
-											<reportElement style="textStyle" x="0" y="0" width="60" height="14" uuid="da283b6b-2a8e-494b-a83e-a68cfe5ed56d"/>
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="60" height="14" uuid="da283b6b-2a8e-494b-a83e-a68cfe5ed56d"/>
 											<textElement>
 												<font pdfEncoding="Cp1251"/>
 											</textElement>
@@ -491,8 +491,8 @@
 									<jr:tableFooter style="table_TD" height="15" rowSpan="1"/>
 									<jr:columnHeader style="table_CH" height="0" rowSpan="1"/>
 									<jr:columnFooter style="table_CH" height="15" rowSpan="1">
-										<textField pattern="###0.000" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="62" height="15" uuid="25d0a462-b56b-45ba-82f1-540b0256ec2a"/>
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="62" height="15" uuid="25d0a462-b56b-45ba-82f1-540b0256ec2a"/>
 											<textElement>
 												<font pdfEncoding="Cp1251"/>
 											</textElement>
@@ -500,8 +500,8 @@
 										</textField>
 									</jr:columnFooter>
 									<jr:detailCell style="table_TD" height="14" rowSpan="1">
-										<textField pattern="###0.000" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="62" height="14" uuid="0436205e-3c2a-4e00-8aa6-d4750665dda8"/>
+										<textField pattern="" isBlankWhenNull="true">
+											<reportElement style="table_CH" x="0" y="0" width="62" height="14" uuid="0436205e-3c2a-4e00-8aa6-d4750665dda8"/>
 											<textElement>
 												<font pdfEncoding="Cp1251"/>
 											</textElement>

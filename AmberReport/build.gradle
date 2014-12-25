@@ -1,0 +1,38 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+compileJava.options.encoding = 'UTF-8'
+ 
+version = '1.0'
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+	manifest {
+        attributes 'Implementation-Title': 'AmberReport Fat',  
+        	'Implementation-Version': version,
+        	'Main-Class': 'ru.tykvin.loader.Loader'
+    }
+    baseName = project.name + '-all'
+    from { 
+		configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } 		
+	}
+	with jar
+	
+	jar {
+		from ('src/main/java') {
+			include '**/*.png'
+		}
+	}
+}
+ 
+//Get dependencies from Maven central repository
+//repositories {
+//   mavenCentral()
+//}
+ 
+//Project dependencies
+dependencies {
+    compile fileTree(dir: 'lib', include: ['*.jar'])
+}
